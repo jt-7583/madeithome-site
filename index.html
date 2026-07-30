@@ -73,6 +73,9 @@
   .loc .small { display:block; font-weight:400; font-size:.75rem; opacity:.8; }
   .ring { font-size:.82rem; color:rgba(255,255,255,.7); margin-top:12px; }
 
+  .video-wrap { max-width:720px; margin:0 auto; }
+  .video-wrap video { width:100%; border-radius:20px; background:#000;
+    box-shadow:0 14px 44px rgba(0,0,0,.28); display:block; }
   .promise { background:var(--night); color:#fff; border-radius:22px; padding:32px; }
   .promise h2 { color:var(--amber); }
   .promise p { color:rgba(255,255,255,.75); max-width:620px; }
@@ -86,8 +89,22 @@
   <img class="logo" src="mascot.png" alt="Made It Home raccoon">
   <h1>Made It Home</h1>
   <p class="tag">Give the kids a little freedom and actually sleep at night. They tap one button when they get home — and if they don't, your phone rings.</p>
-  <a class="cta" href="#demo">Watch a night play out</a>
+  <div style="margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+    <a class="cta" id="joinTop" href="#join">Join the beta</a>
+    <a class="cta" style="background:transparent; color:var(--rust); box-shadow:none;" href="#demo">Watch a night play out</a>
+  </div>
 </header>
+
+<section id="video" class="wrap" style="text-align:center;">
+  <h2>Meet Made It Home</h2>
+  <p class="lead" style="margin:0 auto 20px;">Thirty seconds on how a night works — the good, and the just-in-case.</p>
+  <div class="video-wrap">
+    <video controls playsinline preload="metadata" poster="arrival.png">
+      <source src="made-it-home.mp4" type="video/mp4">
+      Your browser can't play this video — <a href="made-it-home.mp4">download it here</a>.
+    </video>
+  </div>
+</section>
 
 <section id="demo" class="wrap">
   <h2>See a night play out</h2>
@@ -122,6 +139,13 @@
   </div>
 </section>
 
+<section id="join" class="wrap" style="text-align:center;">
+  <h2>Try the beta</h2>
+  <p class="lead" style="margin:0 auto 20px;">Made It Home is in invite-only testing through Apple's TestFlight. One app for the whole family — each phone picks “parent” or “kid” when it opens.</p>
+  <a class="cta" id="joinMain" href="#">Join the beta</a>
+  <p id="joinNote" style="color:var(--fur); font-size:.85rem; margin-top:12px;"></p>
+</section>
+
 <footer>
   <p><strong>Made It Home</strong> — currently in family beta.</p>
   <p>Support &amp; questions: <a href="mailto:jtcotton75@gmail.com">jtcotton75@gmail.com</a><br>
@@ -129,6 +153,24 @@
 </footer>
 
 <script>
+  // Beta App Review approved (build 14) — link is live.
+  const TESTFLIGHT_URL = "https://testflight.apple.com/join/JK2Hsf3e";
+
+  (function setupJoin(){
+    const main = document.getElementById('joinMain');
+    const top = document.getElementById('joinTop');
+    const note = document.getElementById('joinNote');
+    if (TESTFLIGHT_URL) {
+      main.href = TESTFLIGHT_URL; main.textContent = "Join the beta on TestFlight";
+      note.textContent = "Opens in TestFlight (free from Apple). Then install Made It Home.";
+    } else {
+      main.textContent = "Beta coming soon";
+      main.style.background = "#c9bfae"; main.style.pointerEvents = "none";
+      note.textContent = "Invites open soon — check back, or email us to be added.";
+      if (top) { top.textContent = "Beta coming soon"; top.style.opacity = ".6"; }
+    }
+  })();
+
   const scenes = [
     // 1 — Approve Wi-Fi
     `<div class="brand">Riley's Den</div><div class="sub">Network request</div>
