@@ -73,6 +73,17 @@
   .loc .small { display:block; font-weight:400; font-size:.75rem; opacity:.8; }
   .ring { font-size:.82rem; color:rgba(255,255,255,.7); margin-top:12px; }
 
+  .join-steps { display:flex; flex-direction:column; gap:16px; max-width:520px; margin:0 auto; text-align:left; }
+  .join-step { display:flex; gap:16px; background:#fff; border:1px solid #e7ddcd;
+    border-radius:18px; padding:20px; }
+  .join-num { flex:0 0 40px; height:40px; border-radius:50%; background:var(--amber);
+    color:var(--night); font-weight:800; font-size:1.2rem; display:flex;
+    align-items:center; justify-content:center; }
+  .join-body { flex:1; }
+  .join-body strong { font-size:1.1rem; }
+  .join-body p { color:var(--fur); font-size:.95rem; margin:6px 0 12px; }
+  .secondary-cta { background:var(--charcoal); }
+  .cta { margin-top:0; }
   .video-wrap { max-width:720px; margin:0 auto; }
   .video-wrap video { width:100%; border-radius:20px; background:#000;
     box-shadow:0 14px 44px rgba(0,0,0,.28); display:block; }
@@ -141,9 +152,27 @@
 
 <section id="join" class="wrap" style="text-align:center;">
   <h2>Try the beta</h2>
-  <p class="lead" style="margin:0 auto 20px;">Made It Home is in invite-only testing through Apple's TestFlight. One app for the whole family — each phone picks “parent” or “kid” when it opens.</p>
-  <a class="cta" id="joinMain" href="#">Join the beta</a>
-  <p id="joinNote" style="color:var(--fur); font-size:.85rem; margin-top:12px;"></p>
+  <p class="lead" style="margin:0 auto 20px;">Made It Home is in testing through Apple's TestFlight — it takes two quick steps. One app for the whole family; each phone picks “parent” or “kid” when it opens.</p>
+
+  <div class="join-steps">
+    <div class="join-step">
+      <div class="join-num">1</div>
+      <div class="join-body">
+        <strong>Get TestFlight (free)</strong>
+        <p>TestFlight is Apple's official app for trying out apps before they hit the App Store. Install it first.</p>
+        <a class="cta secondary-cta" href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">Download TestFlight</a>
+      </div>
+    </div>
+    <div class="join-step">
+      <div class="join-num">2</div>
+      <div class="join-body">
+        <strong>Then join Made It Home</strong>
+        <p>With TestFlight installed, tap below — it opens in TestFlight, and you tap Install.</p>
+        <a class="cta" id="joinMain" href="#">Join the beta</a>
+        <p id="joinNote" style="color:var(--fur); font-size:.82rem; margin-top:10px;"></p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer>
@@ -162,8 +191,8 @@
     const top = document.getElementById('joinTop');
     const note = document.getElementById('joinNote');
     if (TESTFLIGHT_URL) {
-      main.href = TESTFLIGHT_URL; main.textContent = "Join the beta on TestFlight";
-      note.textContent = "Opens in TestFlight (free from Apple). Then install Made It Home.";
+      main.href = TESTFLIGHT_URL; main.textContent = "Open in TestFlight & install";
+      note.textContent = "Don't have TestFlight yet? Do step 1 first.";
     } else {
       main.textContent = "Beta coming soon";
       main.style.background = "#c9bfae"; main.style.pointerEvents = "none";
